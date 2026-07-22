@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Australian Tax Calculator 2024–25 – PAYG Take-Home Pay | Tabutility</title>
+  <title>Australian Tax Calculator 2025–26 – PAYG Take-Home Pay | Tabutility</title>
   <meta name="description" content="Free Australian income tax calculator for 2024-25. Calculate PAYG withholding, Medicare levy, and take-home pay. Includes LITO and all ATO tax brackets." />
   <meta name="keywords" content="Australian tax calculator, PAYG calculator, ATO tax 2024, take home pay Australia, Medicare levy, income tax Australia" />
   <link rel="canonical" href="https://australian-tax-calculator.tabutility.com/" />
@@ -28,13 +28,14 @@
   <div id="root"></div>
   <div id="ad-bottom"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7039091592734005" data-ad-slot="auto" data-ad-format="rectangle" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   <script type="text/babel">
+    //<![CDATA[
     const { useState } = React;
 
-    // ATO 2024-25 tax brackets (resident)
+    // ATO 2025-26 tax brackets (resident) — source: ato.gov.au (updated 1 June 2026)
     const TAX_BRACKETS_RESIDENT = [
       { min: 0, max: 18200, rate: 0 },
-      { min: 18200, max: 45000, rate: 0.19 },
-      { min: 45000, max: 135000, rate: 0.325 },
+      { min: 18200, max: 45000, rate: 0.16 },
+      { min: 45000, max: 135000, rate: 0.30 },
       { min: 135000, max: 190000, rate: 0.37 },
       { min: 190000, max: Infinity, rate: 0.45 },
     ];
@@ -56,7 +57,7 @@
     }
 
     function calcLITO(income) {
-      // Low Income Tax Offset 2024-25
+      // Low Income Tax Offset 2025-26 — source: ato.gov.au (last updated 8 June 2026)
       if (income <= 37500) return 700;
       if (income <= 45000) return 700 - ((income - 37500) * 0.05);
       if (income <= 66667) return 325 - ((income - 45000) * 0.015);
@@ -81,7 +82,7 @@
       const [income, setIncome] = useState("80000");
       const [resident, setResident] = useState(true);
       const [period, setPeriod] = useState("annual");
-      const [superPct, setSuperPct] = useState("11");
+      const [superPct, setSuperPct] = useState("12");
       const [result, setResult] = useState(null);
 
       const calculate = () => {
@@ -115,7 +116,7 @@
             <div style={{ textAlign: "center", marginBottom: 32 }}>
               <div style={{ fontSize: 48, marginBottom: 8 }}>🇦🇺</div>
               <h1 style={{ margin: 0, fontSize: 32, fontWeight: 800, color: "#1a1a2e" }}>Australian Tax Calculator</h1>
-              <p style={{ margin: "8px 0 0", color: "#555", fontSize: 16 }}>PAYG withholding, Medicare levy & take-home pay — 2024–25</p>
+              <p style={{ margin: "8px 0 0", color: "#555", fontSize: 16 }}>PAYG withholding, Medicare levy & take-home pay — 2025–26</p>
             </div>
 
             <div style={{ background: "#fff", borderRadius: 16, padding: 28, boxShadow: "0 4px 24px rgba(0,0,0,0.08)", marginBottom: 24 }}>
@@ -214,15 +215,15 @@
             </>}
 
             <div style={{ background: "#fff", borderRadius: 16, padding: 24, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", marginTop: 24 }}>
-              <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 700, color: "#1a1a2e" }}>📊 2024–25 ATO Tax Brackets (Australian Residents)</h3>
+              <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 700, color: "#1a1a2e" }}>📊 2025–26 ATO Tax Brackets (Australian Residents)</h3>
               <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                   <thead><tr style={{ background: "#f0fdf4" }}>{["Taxable Income", "Tax Rate", "Tax on This Portion"].map(h => <th key={h} style={{ padding: "10px 14px", textAlign: "left", fontWeight: 700, color: "#333" }}>{h}</th>)}</tr></thead>
                   <tbody>
                     {[
                       ["$0 – $18,200", "0%", "Nil"],
-                      ["$18,201 – $45,000", "19c for each $1 over $18,200", "Up to $5,092"],
-                      ["$45,001 – $135,000", "32.5c for each $1 over $45,000", "Up to $29,250"],
+                      ["$18,201 – $45,000", "16c for each $1 over $18,200", "Up to $4,288"],
+                      ["$45,001 – $135,000", "30c for each $1 over $45,000", "Up to $27,000"],
                       ["$135,001 – $190,000", "37c for each $1 over $135,000", "Up to $20,350"],
                       ["$190,001+", "45c for each $1 over $190,000", "—"],
                     ].map((row, i) => (
@@ -233,7 +234,7 @@
                   </tbody>
                 </table>
               </div>
-              <p style={{ margin: "12px 0 0", fontSize: 13, color: "#888" }}>Plus 2% Medicare Levy on total income. Low Income Tax Offset (LITO) of up to $700 applies to residents.</p>
+              <p style={{ margin: "12px 0 0", fontSize: 13, color: "#888" }}>Plus 2% Medicare Levy. LITO of up to $700 applies to residents. Super guarantee: 12% from 1 July 2025. Source: ato.gov.au</p>
             </div>
           </div>
         </div>
@@ -242,6 +243,7 @@
 
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
+    //]]>
   </script>
 </body>
 </html>
