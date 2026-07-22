@@ -1,9 +1,11 @@
 const { useState } = React;
 
+// Source: ATO — 2025–26 resident tax rates (last updated 1 June 2026)
+// New brackets reflect Stage 3 restructure effective 1 July 2025
 const TAX_BRACKETS_RESIDENT = [
   { min: 0, max: 18200, rate: 0 },
-  { min: 18200, max: 45000, rate: 0.19 },
-  { min: 45000, max: 135000, rate: 0.325 },
+  { min: 18200, max: 45000, rate: 0.16 },
+  { min: 45000, max: 135000, rate: 0.30 },
   { min: 135000, max: 190000, rate: 0.37 },
   { min: 190000, max: Infinity, rate: 0.45 },
 ];
@@ -23,6 +25,7 @@ function calcTax(income, brackets) {
   return tax;
 }
 
+// LITO: up to $700 for income ≤ $37,500 (unchanged 2025-26, source: ATO)
 function calcLITO(income) {
   if (income <= 37500) return 700;
   if (income <= 45000) return 700 - ((income - 37500) * 0.05);
@@ -46,7 +49,7 @@ export default function AustralianTaxCalculator() {
   const [income, setIncome] = useState("80000");
   const [resident, setResident] = useState(true);
   const [period, setPeriod] = useState("annual");
-  const [superPct, setSuperPct] = useState("11");
+  const [superPct, setSuperPct] = useState("12");
   const [result, setResult] = useState(null);
 
   const calculate = () => {
@@ -78,7 +81,7 @@ export default function AustralianTaxCalculator() {
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 48, marginBottom: 8 }}>🇦🇺</div>
           <h1 style={{ margin: 0, fontSize: 32, fontWeight: 800, color: "#1a1a2e" }}>Australian Tax Calculator</h1>
-          <p style={{ margin: "8px 0 0", color: "#555", fontSize: 16 }}>PAYG withholding, Medicare levy & take-home pay — 2024–25</p>
+          <p style={{ margin: "8px 0 0", color: "#555", fontSize: 16 }}>PAYG withholding, Medicare levy & take-home pay — 2025–26</p>
         </div>
 
         <div style={{ background: "#fff", borderRadius: 16, padding: 28, boxShadow: "0 4px 24px rgba(0,0,0,0.08)", marginBottom: 24 }}>
@@ -112,7 +115,7 @@ export default function AustralianTaxCalculator() {
                 <input type="number" value={superPct} min="0" max="30" onChange={e => setSuperPct(e.target.value)} style={{ ...inputStyle, paddingRight: 32 }} />
                 <span style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", color: "#666", fontWeight: 600 }}>%</span>
               </div>
-              <div style={{ fontSize: 12, color: "#888", marginTop: 4 }}>Mandatory: 11% (2024–25)</div>
+              <div style={{ fontSize: 12, color: "#888", marginTop: 4 }}>Mandatory: 12% from 1 July 2025</div>
             </div>
           </div>
           <button onClick={calculate} style={{ width: "100%", marginTop: 24, padding: "16px", background: "linear-gradient(135deg, #059669, #0d9488)", color: "#fff", border: "none", borderRadius: 12, fontSize: 18, fontWeight: 700, cursor: "pointer" }}>
@@ -143,7 +146,7 @@ export default function AustralianTaxCalculator() {
                 {[
                   { label: "Gross Income", value: fmt(result.annualIncome), bold: true },
                   { label: "Income Tax (before offsets)", value: `−${fmt(result.incomeTax)}`, color: "#dc2626" },
-                  { label: "Low Income Tax Offset", value: `+${fmt(result.lito)}`, color: "#059669" },
+                  { label: "Low Income Tax Offset (LITO)", value: `+${fmt(result.lito)}`, color: "#059669" },
                   { label: "Tax after LITO", value: `−${fmt(result.taxAfterOffset)}`, color: "#dc2626" },
                   { label: "Medicare Levy (2%)", value: resident ? `−${fmt(result.medicareLevy)}` : "N/A (non-resident)", color: "#dc2626" },
                   { label: "Total Tax & Levy", value: `−${fmt(result.totalTax)}`, color: "#dc2626", bold: true },
@@ -179,14 +182,14 @@ export default function AustralianTaxCalculator() {
         )}
 
         <div style={{ background: "#fff", borderRadius: 16, padding: 24, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", marginTop: 24 }}>
-          <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 700, color: "#1a1a2e" }}>📊 2024–25 ATO Tax Brackets (Residents)</h3>
+          <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 700, color: "#1a1a2e" }}>📊 2025–26 ATO Tax Brackets (Residents)</h3>
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
             <thead><tr style={{ background: "#f0fdf4" }}>{["Taxable Income", "Tax Rate", "Tax on This Portion"].map(h => <th key={h} style={{ padding: "10px 14px", textAlign: "left", fontWeight: 700, color: "#333" }}>{h}</th>)}</tr></thead>
             <tbody>
               {[
                 ["$0 – $18,200", "0%", "Nil"],
-                ["$18,201 – $45,000", "19%", "Up to $5,092"],
-                ["$45,001 – $135,000", "32.5%", "Up to $29,250"],
+                ["$18,201 – $45,000", "16%", "Up to $4,288"],
+                ["$45,001 – $135,000", "30%", "Up to $27,000"],
                 ["$135,001 – $190,000", "37%", "Up to $20,350"],
                 ["$190,001+", "45%", "—"],
               ].map((row, i) => (
@@ -196,7 +199,7 @@ export default function AustralianTaxCalculator() {
               ))}
             </tbody>
           </table>
-          <p style={{ margin: "12px 0 0", fontSize: 13, color: "#888" }}>Plus 2% Medicare Levy. Low Income Tax Offset (LITO) of up to $700 applies to residents.</p>
+          <p style={{ margin: "12px 0 0", fontSize: 13, color: "#888" }}>Plus 2% Medicare Levy. Low Income Tax Offset (LITO) of up to $700 applies to residents. Super guarantee: 12% from 1 July 2025.</p>
         </div>
       </div>
     </div>
