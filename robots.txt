@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://australian-tax-calculator.tabutility.com/sitemap.xml
