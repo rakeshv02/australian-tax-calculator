@@ -7,16 +7,16 @@
   <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Australian Tax Calculator 2025–26 – PAYG Take-Home Pay | Tabutility</title>
-  <meta name="description" content="Free Australian income tax calculator for 2024-25. Calculate PAYG withholding, Medicare levy, and take-home pay. Includes LITO and all ATO tax brackets." />
-  <meta name="keywords" content="Australian tax calculator, PAYG calculator, ATO tax 2024, take home pay Australia, Medicare levy, income tax Australia" />
+  <title>Australian Tax Calculator 2026–27 – PAYG Take-Home Pay | Tabutility</title>
+  <meta name="description" content="Free Australian income tax calculator for 2026-27. Calculate PAYG withholding, Medicare levy, and take-home pay. Includes LITO and all ATO tax brackets." />
+  <meta name="keywords" content="Australian tax calculator, PAYG calculator, ATO tax 2026, take home pay Australia, Medicare levy, income tax Australia" />
   <link rel="canonical" href="https://australian-tax-calculator.tabutility.com/" />
   
   <script>window.addEventListener('load',function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-78VZWJ5B1W';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','G-78VZWJ5B1W');});</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7039091592734005" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script defer src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script defer src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script defer src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}body{background:#f0fdf4;}
     #ad-top{text-align:center;padding:4px;background:#fff;border-bottom:1px solid #d1fae5;}
@@ -25,15 +25,15 @@
     .site-nav a{color:#a5b4fc;text-decoration:none;font-size:14px;font-family:'Segoe UI',Arial,sans-serif;}
     .site-nav a:hover{color:#fff;}.nav-brand{color:#fff;font-weight:700;font-size:16px;font-family:'Segoe UI',Arial,sans-serif;}
   </style>
-  <meta property="og:title" content="Australian Tax Calculator 2025–26 – PAYG Take-Home Pay | Tabutility"/>
-  <meta property="og:description" content="Free Australian income tax calculator for 2024-25. Calculate PAYG withholding, Medicare levy, and take-home pay. Includes LITO and all ATO tax brackets."/>
+  <meta property="og:title" content="Australian Tax Calculator 2026–27 – PAYG Take-Home Pay | Tabutility"/>
+  <meta property="og:description" content="Free Australian income tax calculator for 2026-27. Calculate PAYG withholding, Medicare levy, and take-home pay. Includes LITO and all ATO tax brackets."/>
   <meta property="og:url" content="https://australian-tax-calculator.tabutility.com/"/>
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="Tabutility"/>
   <meta name="twitter:card" content="summary"/>
-  <meta name="twitter:title" content="Australian Tax Calculator 2025–26 – PAYG Take-Home Pay | Tabutility"/>
-  <meta name="twitter:description" content="Free Australian income tax calculator for 2024-25. Calculate PAYG withholding, Medicare levy, and take-home pay. Includes LITO and all ATO tax brackets."/>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Australian Tax Calculator","description":"PAYG withholding, Medicare levy and take-home pay — 2025–26 ATO rates.","url":"https://australian-tax-calculator.tabutility.com/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Tabutility","url":"https://tabutility.com"}}</script>
+  <meta name="twitter:title" content="Australian Tax Calculator 2026–27 – PAYG Take-Home Pay | Tabutility"/>
+  <meta name="twitter:description" content="Free Australian income tax calculator for 2026-27. Calculate PAYG withholding, Medicare levy, and take-home pay. Includes LITO and all ATO tax brackets."/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Australian Tax Calculator","description":"PAYG withholding, Medicare levy and take-home pay — 2026–27 ATO rates.","url":"https://australian-tax-calculator.tabutility.com/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Tabutility","url":"https://tabutility.com"}}</script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
   <link rel="alternate" hreflang="en-AU" href="https://australian-tax-calculator.tabutility.com/" />
   <link rel="alternate" hreflang="x-default" href="https://australian-tax-calculator.tabutility.com/" />
@@ -58,7 +58,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
     //<![CDATA[
     const { useState } = React;
 
-    // ATO 2025-26 tax brackets (resident) — source: ato.gov.au (updated 1 June 2026)
+    // ATO 2026-27 tax brackets (resident) — source: ato.gov.au (updated 1 June 2026)
     const TAX_BRACKETS_RESIDENT = [
       { min: 0, max: 18200, rate: 0 },
       { min: 18200, max: 45000, rate: 0.16 },
@@ -69,7 +69,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
 
     // Non-resident brackets
     const TAX_BRACKETS_NONRESIDENT = [
-      { min: 0, max: 135000, rate: 0.325 },
+      { min: 0, max: 135000, rate: 0.30 },
       { min: 135000, max: 190000, rate: 0.37 },
       { min: 190000, max: Infinity, rate: 0.45 },
     ];
@@ -84,7 +84,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
     }
 
     function calcLITO(income) {
-      // Low Income Tax Offset 2025-26 — source: ato.gov.au (last updated 8 June 2026)
+      // Low Income Tax Offset 2026-27 — source: ato.gov.au (last updated 8 June 2026)
       if (income <= 37500) return 700;
       if (income <= 45000) return 700 - ((income - 37500) * 0.05);
       if (income <= 66667) return 325 - ((income - 45000) * 0.015);
@@ -143,7 +143,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
             <div style={{ textAlign: "center", marginBottom: 32 }}>
               <div style={{ fontSize: 48, marginBottom: 8 }}>🇦🇺</div>
               <h1 style={{ margin: 0, fontSize: 32, fontWeight: 800, color: "#1a1a2e" }}>Australian Tax Calculator</h1>
-              <p style={{ margin: "8px 0 0", color: "#555", fontSize: 16 }}>PAYG withholding, Medicare levy & take-home pay — 2025–26</p>
+              <p style={{ margin: "8px 0 0", color: "#555", fontSize: 16 }}>PAYG withholding, Medicare levy & take-home pay — 2026–27</p>
             </div>
 
             <div style={{ background: "#fff", borderRadius: 16, padding: 28, boxShadow: "0 4px 24px rgba(0,0,0,0.08)", marginBottom: 24 }}>
@@ -242,7 +242,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
             </>}
 
             <div style={{ background: "#fff", borderRadius: 16, padding: 24, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", marginTop: 24 }}>
-              <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 700, color: "#1a1a2e" }}>📊 2025–26 ATO Tax Brackets (Australian Residents)</h3>
+              <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 700, color: "#1a1a2e" }}>📊 2026–27 ATO Tax Brackets (Australian Residents)</h3>
               <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                   <thead><tr style={{ background: "#f0fdf4" }}>{["Taxable Income", "Tax Rate", "Tax on This Portion"].map(h => <th key={h} style={{ padding: "10px 14px", textAlign: "left", fontWeight: 700, color: "#333" }}>{h}</th>)}</tr></thead>
@@ -364,19 +364,19 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
   <section id="seo-content" style="background:#1a1a2e;color:#e2e8f0;padding:60px 20px;margin-top:40px;border-top:1px solid #2d3748;">
     <div style="max-width:860px;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;line-height:1.7;">
       <h2 style="font-size:2rem;font-weight:700;color:#f1f5f9;margin-bottom:24px;">How to Use the Australian Tax Calculator</h2>
-      <p style="margin-bottom:16px;color:#cbd5e1;">The Australian Tax Calculator computes PAYG withholding, Medicare levy, and take-home pay for the 2025–26 financial year using the official ATO tax tables. It handles all income levels from below the tax-free threshold to high earners, including the Low Income Tax Offset (LITO) and Low and Middle Income Tax Offset (LMITO) if applicable.</p>
+      <p style="margin-bottom:16px;color:#cbd5e1;">The Australian Tax Calculator computes PAYG withholding, Medicare levy, and take-home pay for the 2026–27 financial year using the official ATO tax tables. It handles all income levels from below the tax-free threshold to high earners, including the Low Income Tax Offset (LITO).</p>
       <p style="margin-bottom:16px;color:#cbd5e1;">Enter your annual taxable income, residency status (Australian resident for tax purposes or non-resident), and any salary sacrifice amounts. The calculator shows income tax by bracket, the Medicare levy (2%), LITO reduction, and your net take-home monthly and fortnightly.</p>
-      <p style="margin-bottom:16px;color:#cbd5e1;">A key nuance is the Low Income Tax Offset (LITO): it reduces tax payable by up to $700 for incomes under $37,500, phasing out at higher incomes. This means that with the tax-free threshold and LITO combined, Australian residents effectively pay no tax until income exceeds approximately $22,575 for 2025–26.</p>
+      <p style="margin-bottom:16px;color:#cbd5e1;">A key nuance is the Low Income Tax Offset (LITO): it reduces tax payable by up to $700 for incomes under $37,500, phasing out at higher incomes. This means that with the tax-free threshold and LITO combined, Australian residents effectively pay no tax until income exceeds approximately $22,575 for 2026–27.</p>
 
       <div style="background:#0f172a;border:1px solid #334155;border-radius:12px;padding:28px;margin:32px 0;">
         <h3 style="font-size:1.2rem;font-weight:600;color:#f1f5f9;margin-bottom:16px;">📊 Worked Example</h3>
-        <p style="color:#94a3b8;margin:0 0 12px;">Australian resident, $85,000 gross income, 2025–26:</p>
+        <p style="color:#94a3b8;margin:0 0 12px;">Australian resident, $85,000 gross income, 2026–27:</p>
         <ul style="list-style:none;padding:0;margin:0;color:#cbd5e1;">
-          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Income tax (before offsets): <strong style="color:#f87171;">$19,967</strong></li>
+          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Income tax (before offsets): <strong style="color:#f87171;">$16,288</strong></li>
           <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Low Income Tax Offset: <strong style="color:#34d399;">$0</strong> (phased out above $66,667)</li>
           <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Medicare Levy (2%): <strong style="color:#f87171;">$1,700</strong></li>
-          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Total tax: <strong style="color:#f87171;">$21,667</strong></li>
-          <li style="padding:6px 0;">Monthly take-home: <strong style="color:#34d399;">$5,278</strong></li>
+          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Total tax: <strong style="color:#f87171;">$17,988</strong></li>
+          <li style="padding:6px 0;">Monthly take-home: <strong style="color:#34d399;">$5,584</strong></li>
         </ul>
       </div>
 
@@ -392,8 +392,8 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
 
       <h3 style="font-size:1.4rem;font-weight:600;color:#f1f5f9;margin:32px 0 24px;">Frequently Asked Questions</h3>
       <div style="margin-bottom:24px;">
-        <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">What are the Australian income tax rates for 2025–26?</h4>
-        <p style="color:#cbd5e1;margin:0;">Australian resident tax rates: 0% on income up to $18,200 (tax-free threshold), 19% on $18,201–$45,000, 32.5% on $45,001–$135,000, 37% on $135,001–$190,000, and 45% on income above $190,000. The Stage 3 tax cuts (effective from 1 July 2024) restructured these brackets significantly.</p>
+        <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">What are the Australian income tax rates for 2026–27?</h4>
+        <p style="color:#cbd5e1;margin:0;">Australian resident tax rates: 0% on income up to $18,200 (tax-free threshold), 16% on $18,201–$45,000, 30% on $45,001–$135,000, 37% on $135,001–$190,000, and 45% on income above $190,000. The Stage 3 tax cuts (effective from 1 July 2024) restructured these brackets significantly.</p>
       </div>
       <div style="margin-bottom:24px;">
         <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">What is the Medicare Levy?</h4>
@@ -401,7 +401,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
       </div>
       <div style="margin-bottom:24px;">
         <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">What is the tax-free threshold?</h4>
-        <p style="color:#cbd5e1;margin:0;">Australian residents can claim the tax-free threshold of $18,200 — meaning the first $18,200 of income is tax-free. Non-residents cannot claim this threshold and pay 32.5% from the first dollar earned. Always claim the threshold with your primary employer by submitting a Tax File Number Declaration form.</p>
+        <p style="color:#cbd5e1;margin:0;">Australian residents can claim the tax-free threshold of $18,200 — meaning the first $18,200 of income is tax-free. Non-residents cannot claim this threshold; the calculator uses the ATO’s latest published foreign-resident rate of 30% from the first dollar earned. Always claim the threshold with your primary employer by submitting a Tax File Number Declaration form.</p>
       </div>
       <div style="margin-bottom:24px;">
         <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">How does the superannuation guarantee affect take-home pay?</h4>
