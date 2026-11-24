@@ -46,6 +46,7 @@
 nav .brand{color:#fff}
 nav a:hover{color:#818cf8}
 input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
+input[type="number"],select,button{min-height:44px;box-sizing:border-box}
 </style>
 </head>
 <body>
@@ -59,7 +60,7 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
     // ATO 2026-27 tax brackets (resident) — source: ato.gov.au (updated 1 June 2026)
     const TAX_BRACKETS_RESIDENT = [
       { min: 0, max: 18200, rate: 0 },
-      { min: 18200, max: 45000, rate: 0.16 },
+      { min: 18200, max: 45000, rate: 0.15 },
       { min: 45000, max: 135000, rate: 0.30 },
       { min: 135000, max: 190000, rate: 0.37 },
       { min: 190000, max: Infinity, rate: 0.45 },
@@ -91,8 +92,9 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
 
     function calcMedicareLevy(income, resident) {
       if (!resident) return 0;
-      const shade_in_threshold = 26000;
-      const full_threshold = 32500;
+      // Latest published single-adult thresholds are for 2025/26.
+      const shade_in_threshold = 28011;
+      const full_threshold = shade_in_threshold / 0.8;
       if (income <= shade_in_threshold) return 0;
       if (income <= full_threshold) return (income - shade_in_threshold) * 0.1;
       return income * 0.02;
@@ -113,6 +115,10 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
       const calculate = () => {
         const annualIncome = parseFloat(income) || 0;
         const superRate = (parseFloat(superPct) || 0) / 100;
+        if (![annualIncome, superRate].every(Number.isFinite) || annualIncome < 0 || superRate < 0 || superRate > 1) {
+          alert('Enter non-negative income and a super percentage between 0 and 100.');
+          return;
+        }
         const brackets = resident ? TAX_BRACKETS_RESIDENT : TAX_BRACKETS_NONRESIDENT;
 
         const incomeTax = calcTax(annualIncome, brackets);
@@ -141,7 +147,8 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
             <div style={{ textAlign: "center", marginBottom: 32 }}>
               <div style={{ fontSize: 48, marginBottom: 8 }}>🇦🇺</div>
               <h1 style={{ margin: 0, fontSize: 32, fontWeight: 800, color: "#1a1a2e" }}>Australian Tax Calculator</h1>
-              <p style={{ margin: "8px 0 0", color: "#555", fontSize: 16 }}>PAYG withholding, Medicare levy & take-home pay — 2026–27</p>
+              <p style={{ margin: "8px 0 0", color: "#555", fontSize: 16 }}>Annual tax estimate, Medicare levy & take-home pay — 2026–27</p>
+              <p style={{color:"#555",fontSize:13}}>Resident income tax uses the 2026–27 15% first taxable band. Medicare uses the latest published 2025–26 single-adult thresholds provisionally; 2026–27 thresholds may change. Excludes family and senior concessions, HELP repayments and the Medicare levy surcharge. Not an exact PAYG withholding calculation. <a href="https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents">ATO rates</a>.</p>
             </div>
 
             <div style={{ background: "#fff", borderRadius: 16, padding: 28, boxShadow: "0 4px 24px rgba(0,0,0,0.08)", marginBottom: 24 }}>
@@ -199,7 +206,7 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
                 ))}
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 24 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,240px),1fr))", gap: 20, marginBottom: 24 }}>
                 <div style={{ background: "#fff", borderRadius: 16, padding: 24, boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
                   <h3 style={{ margin: "0 0 18px", fontSize: 16, fontWeight: 700, color: "#1a1a2e" }}>Annual Tax Breakdown</h3>
                   {[
@@ -247,7 +254,7 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
                   <tbody>
                     {[
                       ["$0 – $18,200", "0%", "Nil"],
-                      ["$18,201 – $45,000", "16c for each $1 over $18,200", "Up to $4,288"],
+                      ["$18,201 – $45,000", "15c for each $1 over $18,200", "Up to $4,020"],
                       ["$45,001 – $135,000", "30c for each $1 over $45,000", "Up to $27,000"],
                       ["$135,001 – $190,000", "37c for each $1 over $135,000", "Up to $20,350"],
                       ["$190,001+", "45c for each $1 over $190,000", "—"],
@@ -355,7 +362,7 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
 </script>
 <footer style="background:#1a1a2e;margin-top:48px;padding:28px 24px;text-align:center;font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:13px;color:#94a3b8;line-height:1.8">
 <div style="font-weight:700;color:#fff;font-size:15px">⚡ Tabutility</div>
-<div>Free, private, browser-based tools. No sign-up, no tracking.</div>
+<div>Free, browser-based tools. No sign-up. Advertising and analytics are explained in our privacy policy.</div>
 <div style="margin-top:6px"><a href="https://tabutility.com" style="color:#818cf8;font-weight:600;text-decoration:none">All Tools</a> · <a href="https://tabutility.com/blog/" style="color:#94a3b8;text-decoration:none">Blog</a> · <a href="https://tabutility.com/about/" style="color:#94a3b8;text-decoration:none">About</a> · <a href="https://tabutility.com/privacy-policy/" style="color:#94a3b8;text-decoration:none">Privacy</a> · <a href="https://tabutility.com/contact/" style="color:#94a3b8;text-decoration:none">Contact</a></div>
 <div style="margin-top:6px;color:#64748b">© 2026 Tabutility</div>
 
@@ -370,11 +377,11 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
         <h3 style="font-size:1.2rem;font-weight:600;color:#f1f5f9;margin-bottom:16px;">📊 Worked Example</h3>
         <p style="color:#94a3b8;margin:0 0 12px;">Australian resident, $85,000 gross income, 2026–27:</p>
         <ul style="list-style:none;padding:0;margin:0;color:#cbd5e1;">
-          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Income tax (before offsets): <strong style="color:#f87171;">$16,288</strong></li>
+          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Income tax (before offsets): <strong style="color:#f87171;">$16,020</strong></li>
           <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Low Income Tax Offset: <strong style="color:#34d399;">$0</strong> (phased out above $66,667)</li>
           <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Medicare Levy (2%): <strong style="color:#f87171;">$1,700</strong></li>
-          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Total tax: <strong style="color:#f87171;">$17,988</strong></li>
-          <li style="padding:6px 0;">Monthly take-home: <strong style="color:#34d399;">$5,584</strong></li>
+          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Total tax: <strong style="color:#f87171;">$17,720</strong></li>
+          <li style="padding:6px 0;">Monthly take-home: <strong style="color:#34d399;">$5,606.67</strong></li>
         </ul>
       </div>
 
@@ -391,11 +398,11 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
       <h3 style="font-size:1.4rem;font-weight:600;color:#f1f5f9;margin:32px 0 24px;">Frequently Asked Questions</h3>
       <div style="margin-bottom:24px;">
         <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">What are the Australian income tax rates for 2026–27?</h4>
-        <p style="color:#cbd5e1;margin:0;">Australian resident tax rates: 0% on income up to $18,200 (tax-free threshold), 16% on $18,201–$45,000, 30% on $45,001–$135,000, 37% on $135,001–$190,000, and 45% on income above $190,000. The Stage 3 tax cuts (effective from 1 July 2024) restructured these brackets significantly.</p>
+        <p style="color:#cbd5e1;margin:0;">Australian resident income-tax rates for 2026–27 are 0% up to $18,200, 15% on $18,201–$45,000, 30% on $45,001–$135,000, 37% on $135,001–$190,000, and 45% above $190,000. Medicare thresholds are provisional as explained above.</p>
       </div>
       <div style="margin-bottom:24px;">
         <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">What is the Medicare Levy?</h4>
-        <p style="color:#cbd5e1;margin:0;">Most Australian taxpayers pay a Medicare Levy of 2% of their taxable income, which funds Australia's universal healthcare system (Medicare). Low-income earners pay a reduced levy or none at all (singles earning under ~$26,000 are exempt). An additional Medicare Levy Surcharge (1–1.5%) applies to high earners without private hospital cover.</p>
+        <p style="color:#cbd5e1;margin:0;">The standard Medicare levy is 2%. This calculator provisionally uses the latest published 2025–26 single-adult threshold: no levy up to $28,011, then a phase-in capped at 2% of income. The 2026–27 thresholds may change. Family and senior concessions and the Medicare levy surcharge are not modeled.</p>
       </div>
       <div style="margin-bottom:24px;">
         <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">What is the tax-free threshold?</h4>
